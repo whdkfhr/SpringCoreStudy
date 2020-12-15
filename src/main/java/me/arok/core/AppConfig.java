@@ -1,6 +1,8 @@
 package me.arok.core;
 
+import me.arok.core.discount.DiscountPolicy;
 import me.arok.core.discount.FixDiscountPolicy;
+import me.arok.core.member.MemberRepository;
 import me.arok.core.member.MemberService;
 import me.arok.core.member.MemberServiceImpl;
 import me.arok.core.member.MemoryMemberRepository;
@@ -10,10 +12,18 @@ import me.arok.core.order.OrderServiceImpl;
 public class AppConfig {
 
     public MemberService memberService() {
-        return new MemberServiceImpl(new MemoryMemberRepository());
+        return new MemberServiceImpl(memberRepository());
+    }
+
+    private MemberRepository memberRepository() {
+        return new MemoryMemberRepository();
     }
 
     public OrderService orderService() {
-        return new OrderServiceImpl(new MemoryMemberRepository(), new FixDiscountPolicy());
+        return new OrderServiceImpl(memberRepository(), discountPolicy());
+    }
+
+    public DiscountPolicy discountPolicy() {
+        return new FixDiscountPolicy();
     }
 }
