@@ -1,15 +1,19 @@
 package me.arok.core.order;
 
 import me.arok.core.discount.DiscountPolicy;
-import me.arok.core.discount.FixDiscountPolicy;
 import me.arok.core.member.Member;
 import me.arok.core.member.MemberRepository;
 import me.arok.core.member.MemoryMemberRepository;
 
 public class OrderServiceImpl implements OrderService {
 
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
-    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
+    private final MemberRepository memberRepository;
+    private final DiscountPolicy discountPolicy;
+
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
