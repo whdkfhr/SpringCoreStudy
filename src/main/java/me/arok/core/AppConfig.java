@@ -2,6 +2,7 @@ package me.arok.core;
 
 import me.arok.core.discount.DiscountPolicy;
 import me.arok.core.discount.FixDiscountPolicy;
+import me.arok.core.discount.RateDiscountPolicy;
 import me.arok.core.member.MemberRepository;
 import me.arok.core.member.MemberService;
 import me.arok.core.member.MemberServiceImpl;
@@ -24,6 +25,7 @@ public class AppConfig {
     }
 
     public DiscountPolicy discountPolicy() {
-        return new FixDiscountPolicy();
+//        return new FixDiscountPolicy();
+        return new RateDiscountPolicy();
     }
 }
