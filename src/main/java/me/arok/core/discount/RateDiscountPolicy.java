@@ -1,10 +1,14 @@
 package me.arok.core.discount;
 
+import me.arok.core.annotation.MainDiscountPolicy;
 import me.arok.core.member.Grade;
 import me.arok.core.member.Member;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 @Component
+@MainDiscountPolicy
 public class RateDiscountPolicy implements DiscountPolicy {
 
     private int discountPercent = 10;
